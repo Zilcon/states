@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    .container { max-width: 400px; margin: auto; text-align: center; }
+    button { width: 100%; padding: 10px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>ようこそ、<span id="username"></span>さん！</h2>
+    <button onclick="goToMap()">地図ページへ</button>
+    <button onclick="logout()">ログアウト</button>
+  </div>
+
+  <script>
+    // URLパラメータから国名を取得
+    const params = new URLSearchParams(window.location.search);
+    const user = params.get('user');
+    document.getElementById('username').textContent = user || 'ゲスト';
+
+    function goToMap() {
+      window.location.href = '?page=dashboard&user=' + encodeURIComponent(user);
+    }
+
+    function logout() {
+      window.location.href = '?page=index'; // ログイン画面へ戻る
+    }
+  </script>
+</body>
+</html>
