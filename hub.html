@@ -18,12 +18,12 @@
   <script>
     // URLパラメータから国名を取得
     const params = new URLSearchParams(window.location.search);
-    const user = params.get('user');
-    document.getElementById('username').textContent = user || 'ゲスト';
+const user = params.get('user');
+document.getElementById('username').textContent = user || 'ゲスト';
 
     function goToMap() {
-      window.location.href = '?page=dashboard&user=' + encodeURIComponent(user);
-    }
+  window.location.href = 'https://script.google.com/macros/s/AKfycb.../exec?page=dashboard&user=' + encodeURIComponent(user);
+}
 
     function logout() {
       window.location.href = '?page=index'; // ログイン画面へ戻る
@@ -31,3 +31,4 @@
   </script>
 </body>
 </html>
+
