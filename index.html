@@ -47,7 +47,7 @@ async function login() {
   const data = await res.json();
   if (data.status === true) {
     alert('ログイン成功');
-    window.location.href = `?page=hub&user=${encodeURIComponent(username)}`;
+    window.location.href = '?page=hub&user=' + encodeURIComponent(username);
   } else {
     alert('ログイン失敗');
   }
@@ -73,5 +73,6 @@ async function signup() {
   </script>
 </body>
 </html>
+
 
 
