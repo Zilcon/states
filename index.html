@@ -28,26 +28,49 @@
   </div>
 
   <script>
-    function login() {
-      const username = document.getElementById('loginUsername').value;
-      const password = document.getElementById('loginPassword').value;
-      google.script.run.withSuccessHandler(function(result){
-        if(result){
-          alert('ログイン成功');
-          window.location.href = '?page=hub&user=' + encodeURIComponent(username);
-        } else {
-          alert('ログイン失敗');
-        }
-      }).validateUser(username, password);
-    }
+const WORKER_URL = "https://solitary-resonance-70a1.workers.dev";
 
-    function signup() {
-      const username = document.getElementById('signupUsername').value;
-      const password = document.getElementById('signupPassword').value;
-      google.script.run.withSuccessHandler(function(message){
-        alert(message);
-      }).registerUser(username, password);
-    }
+async function login() {
+  const username = document.getElementById('loginUsername').value;
+  const password = document.getElementById('loginPassword').value;
+
+  const res = await fetch(WORKER_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      action: "login",
+      username,
+      password
+    })
+  });
+
+  const data = await res.json();
+  if (data.status === true) {
+    alert('ログイン成功');
+    window.location.href = `?page=hub&user=${encodeURIComponent(username)}`;
+  } else {
+    alert('ログイン失敗');
+  }
+}
+
+async function signup() {
+  const username = document.getElementById('signupUsername').value;
+  const password = document.getElementById('signupPassword').value;
+
+  const res = await fetch(WORKER_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      action: "signup",
+      username,
+      password
+    })
+  });
+
+  const data = await res.json();
+  alert(data.status);
+}
   </script>
 </body>
 </html>
+
