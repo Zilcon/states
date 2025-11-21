@@ -47,7 +47,7 @@ async function login() {
   const data = await res.json();
   if (data.status === true) {
     alert('ログイン成功');
-    window.location.href = '?page=hub&user=' + encodeURIComponent(username);
+    window.location.href = 'https://script.google.com/macros/s/AKfycbyzXv8oqICOf5mgApKnlOE7heD1GnpXZ8Yd5OQkiNbzz8n8pC0WzoKJMkoRPhHGI-w/exec?page=hub&user=' + encodeURIComponent(username);
   } else {
     alert('ログイン失敗');
   }
@@ -73,6 +73,7 @@ async function signup() {
   </script>
 </body>
 </html>
+
 
 
 
